@@ -14,8 +14,31 @@ router.get('/', (req, res) => {
 
         console.log(result); // should see objects wrapped in an array
 
+
         // render the home view with dynamic data
-        res.render('home', { data: result });
+       res.render('home', { people: result });
+
+       // , { data: result }
+    })
+})
+
+//this resoles to localhost:3000/anything (whatever you put after the slash in the location bar)
+// ":" is a dynamice placholder, we want what comes aafter it
+router.get('/:id', (req,res) => {
+    console.log('hit a dynamic route!');
+    console.log(req.params.id);
+
+    let query = `SELECT * FROM tbl_bio WHERE profID="${req.params.id}"`;
+
+    sql.query(query, (err, result) => {
+        if (err) { throw err; console.log(err); }
+
+        console.log(result); // should see objects wrapped in an array
+
+
+        // render the home view with dynamic data
+        //res.render('home', { people: result });
+
     })
 })
 
