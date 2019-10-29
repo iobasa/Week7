@@ -35,9 +35,21 @@ router.get('/:id', (req,res) => {
 
         console.log(result); // should see objects wrapped in an array
 
+        //turn our social property into an array - it's just next in the DB,
+        // which isn't really anything we can work with
+        result[0].social = result[0].social.split(",").map(function(item){
+          item = item.trim();// remove the extra spaces from each word
+          
+          return item;
+        })
+
+        //console.log('after split: ', result[0]);
 
         // render the home view with dynamic data
         //res.render('home', { people: result });
+
+        // send the DB query back to the browser
+        res.json(result);
 
     })
 })
