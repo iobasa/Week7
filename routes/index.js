@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 
 //this resoles to localhost:3000/anything (whatever you put after the slash in the location bar)
 // ":" is a dynamice placholder, we want what comes aafter it
-router.get('/:id', (req,res) => {
+router.get('/users/:id', (req,res) => {
     console.log('hit a dynamic route!');
     console.log(req.params.id);
 
